@@ -1,0 +1,53 @@
+SLR(1) Parsing Trace Report
+========================================
+
+Input #1: id
+Result: Accepted
+Message: String accepted successfully.
+Parse Time (ms): 0.2545
+Trace:
+Step	Stack	Input	Action
+1	0 id 2	$	shift 2
+2	0 L 4	$	reduce L -> id
+3	0 R 5	$	reduce R -> L
+4	0 Start 3	$	reduce Start -> R
+5	0 Start 3	$	accept
+
+Input #2: * id
+Result: Accepted
+Message: String accepted successfully.
+Parse Time (ms): 0.1504
+Trace:
+Step	Stack	Input	Action
+1	0 * 1	id $	shift 1
+2	0 * 1 id 2	$	shift 2
+3	0 * 1 L 6	$	reduce L -> id
+4	0 * 1 R 7	$	reduce R -> L
+5	0 L 4	$	reduce L -> * R
+6	0 R 5	$	reduce R -> L
+7	0 Start 3	$	reduce Start -> R
+8	0 Start 3	$	accept
+
+Input #3: id = id
+Result: Rejected
+Message: Parsing halted because of an unresolved table conflict at state I4 on symbol '='.
+Parse Time (ms): 0.0747
+Trace:
+Step	Stack	Input	Action
+1	0 id 2	= id $	shift 2
+2	0 L 4	= id $	reduce L -> id
+3	0 L 4	= id $	conflict(r5,s8)
+
+Input #4: * id = id
+Result: Rejected
+Message: Parsing halted because of an unresolved table conflict at state I4 on symbol '='.
+Parse Time (ms): 0.1018
+Trace:
+Step	Stack	Input	Action
+1	0 * 1	id = id $	shift 1
+2	0 * 1 id 2	= id $	shift 2
+3	0 * 1 L 6	= id $	reduce L -> id
+4	0 * 1 R 7	= id $	reduce R -> L
+5	0 L 4	= id $	reduce L -> * R
+6	0 L 4	= id $	conflict(r5,s8)
+

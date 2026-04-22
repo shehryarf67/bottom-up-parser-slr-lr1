@@ -1,0 +1,95 @@
+SLR(1) Parse Trees
+========================================
+
+Input #1: id
+Reductions:
+  - L -> id
+  - R -> L
+  - Start -> R
+Parse Tree:
+Start
+└── R
+    └── L
+        └── id
+
+Input #2: * id
+Reductions:
+  - L -> id
+  - R -> L
+  - L -> * R
+  - R -> L
+  - Start -> R
+Parse Tree:
+Start
+└── R
+    └── L
+        ├── *
+        └── R
+            └── L
+                └── id
+
+LR(1) Parse Trees
+========================================
+
+Input #1: id
+Reductions:
+  - L -> id
+  - R -> L
+  - Start -> R
+Parse Tree:
+Start
+└── R
+    └── L
+        └── id
+
+Input #2: * id
+Reductions:
+  - L -> id
+  - R -> L
+  - L -> * R
+  - R -> L
+  - Start -> R
+Parse Tree:
+Start
+└── R
+    └── L
+        ├── *
+        └── R
+            └── L
+                └── id
+
+Input #3: id = id
+Reductions:
+  - L -> id
+  - L -> id
+  - R -> L
+  - Start -> L = R
+Parse Tree:
+Start
+├── L
+│   └── id
+├── =
+└── R
+    └── L
+        └── id
+
+Input #4: * id = id
+Reductions:
+  - L -> id
+  - R -> L
+  - L -> * R
+  - L -> id
+  - R -> L
+  - Start -> L = R
+Parse Tree:
+Start
+├── L
+│   ├── *
+│   └── R
+│       └── L
+│           └── id
+├── =
+└── R
+    └── L
+        └── id
+

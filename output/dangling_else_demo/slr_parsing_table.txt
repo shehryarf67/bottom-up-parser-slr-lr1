@@ -1,0 +1,15 @@
+State   else          id            if            other         then          $             Stmt          Expr          
+I0                                  s1            s2                                        3                           
+I1                    s4                                                                                  5             
+I2      r3                                                                    r3                                        
+I3                                                                            acc                                       
+I4                                                              r4                                                      
+I5                                                              s6                                                      
+I6                                  s1            s2                                        7                           
+I7      r1 / s8                                                               r1                                        
+I8                                  s1            s2                                        9                           
+I9      r2                                                                    r2                                        
+
+Conflicts:
+  State I7, Symbol 'else': Shift/Reduce Conflict => r1 / s8
+Grammar classification: Not SLR(1)

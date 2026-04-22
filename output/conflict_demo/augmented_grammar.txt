@@ -1,0 +1,21 @@
+Original Start Symbol: Start
+Augmented Start Symbol: StartPrime
+
+(0) StartPrime -> Start
+(1) Start -> L = R
+(2) Start -> R
+(3) L -> * R
+(4) L -> id
+(5) R -> L
+
+FIRST Sets:
+FIRST(L) = { *, id }
+FIRST(R) = { *, id }
+FIRST(Start) = { *, id }
+FIRST(StartPrime) = { *, id }
+
+FOLLOW Sets:
+FOLLOW(L) = { $, = }
+FOLLOW(R) = { $, = }
+FOLLOW(Start) = { $ }
+FOLLOW(StartPrime) = {  }

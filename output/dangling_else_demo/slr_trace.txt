@@ -1,0 +1,46 @@
+SLR(1) Parsing Trace Report
+========================================
+
+Input #1: other
+Result: Accepted
+Message: String accepted successfully.
+Parse Time (ms): 0.2802
+Trace:
+Step	Stack	Input	Action
+1	0 other 2	$	shift 2
+2	0 Stmt 3	$	reduce Stmt -> other
+3	0 Stmt 3	$	accept
+
+Input #2: if id then other
+Result: Accepted
+Message: String accepted successfully.
+Parse Time (ms): 0.2032
+Trace:
+Step	Stack	Input	Action
+1	0 if 1	id then other $	shift 1
+2	0 if 1 id 4	then other $	shift 4
+3	0 if 1 Expr 5	then other $	reduce Expr -> id
+4	0 if 1 Expr 5 then 6	other $	shift 6
+5	0 if 1 Expr 5 then 6 other 2	$	shift 2
+6	0 if 1 Expr 5 then 6 Stmt 7	$	reduce Stmt -> other
+7	0 Stmt 3	$	reduce Stmt -> if Expr then Stmt
+8	0 Stmt 3	$	accept
+
+Input #3: if id then if id then other else other
+Result: Rejected
+Message: Parsing halted because of an unresolved table conflict at state I7 on symbol 'else'.
+Parse Time (ms): 0.2722
+Trace:
+Step	Stack	Input	Action
+1	0 if 1	id then if id then other else other $	shift 1
+2	0 if 1 id 4	then if id then other else other $	shift 4
+3	0 if 1 Expr 5	then if id then other else other $	reduce Expr -> id
+4	0 if 1 Expr 5 then 6	if id then other else other $	shift 6
+5	0 if 1 Expr 5 then 6 if 1	id then other else other $	shift 1
+6	0 if 1 Expr 5 then 6 if 1 id 4	then other else other $	shift 4
+7	0 if 1 Expr 5 then 6 if 1 Expr 5	then other else other $	reduce Expr -> id
+8	0 if 1 Expr 5 then 6 if 1 Expr 5 then 6	other else other $	shift 6
+9	0 if 1 Expr 5 then 6 if 1 Expr 5 then 6 other 2	else other $	shift 2
+10	0 if 1 Expr 5 then 6 if 1 Expr 5 then 6 Stmt 7	else other $	reduce Stmt -> other
+11	0 if 1 Expr 5 then 6 if 1 Expr 5 then 6 Stmt 7	else other $	conflict(r1,s8)
+

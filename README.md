@@ -1,191 +1,109 @@
-# 🔬 SLR(1) & LR(1) Parser — Compiler Construction (C++17)
+# CS4031 Compiler Construction Assignment 03
 
-> A complete, modular implementation of bottom-up parsers featuring table construction, conflict detection, parse tree generation, and performance comparison.
+## Team Members
+- Shehryar Faisal (23I-0604)
+- Zaki Nabeel (23I-0508)
 
----
+## Programming Language
+C++17
 
-## 📌 Overview
+## Project Overview
+This project implements a generic bottom-up parser framework for:
+- SLR(1)
+- LR(1)
 
-This project implements two classic **bottom-up parsing algorithms** — **SLR(1)** and **LR(1)** — as part of a Compiler Construction assignment. It reads a Context-Free Grammar (CFG) from an input file, constructs the canonical item sets and parsing tables, then parses input strings while generating detailed traces and parse trees.
+The program reads a grammar from a text file, augments it, builds canonical LR(0) and LR(1) item collections, generates parsing tables, parses input strings using shift-reduce parsing, reports conflicts, generates text-based parse trees, and produces comparison output files.
 
----
-
-## ✨ Features
-
-- 📥 Reads CFG from input files
-- ➕ Automatic grammar augmentation with a new start symbol
-- 🔁 CLOSURE and GOTO operations
-- 📊 Builds complete **SLR(1)** and **LR(1)** parsing tables
-- ⚡ Stack-based shift-reduce parsing
-- ⚠️ Conflict detection: **Shift/Reduce** and **Reduce/Reduce**
-- 🌳 Parse tree generation
-- 📝 Detailed step-by-step parsing traces
-- 📈 Side-by-side performance & comparison analysis
-
----
-
-## 🧠 Concepts Covered
-
-| Topic | Description |
-|---|---|
-| Bottom-Up Parsing | Shift-reduce parsing with explicit stack |
-| SLR(1) | Parsing table built using FOLLOW sets |
-| LR(1) | Parsing table built using lookahead items |
-| Item Sets | LR(0) for SLR, LR(1) canonical collection |
-| FIRST / FOLLOW | Used in table construction and conflict resolution |
-| Conflict Detection | Identifies ambiguous grammars automatically |
-
----
-
-## 🛠️ Tech Stack
-
-- **Language:** C++17
-- **Compiler:** g++ via MSYS2 / MinGW-w64
-- **Build System:** GNU Make
-- **Platform:** Windows (compatible with Linux & macOS)
-
----
-
-## 📂 Project Structure
-
-```
-├── src/
-│   ├── main.cpp              # Entry point
-│   ├── grammar.cpp           # CFG parsing & augmentation
-│   ├── items.cpp             # LR(0) / LR(1) item set construction
-│   ├── slr_parser.cpp        # SLR(1) parser logic
-│   ├── lr1_parser.cpp        # LR(1) parser logic
-│   ├── parsing_table.cpp     # Table construction (ACTION/GOTO)
-│   ├── stack.cpp             # Parsing stack
-│   └── tree.cpp              # Parse tree generation
-│
-├── input/
-│   ├── grammar1.txt
-│   ├── grammar2.txt
-│   ├── grammar3.txt
-│   ├── grammar_with_conflict.txt
-│   ├── input_valid.txt
-│   └── input_invalid.txt
-│
-├── output/
-│   ├── slr_items.txt
-│   ├── slr_parsing_table.txt
-│   ├── slr_trace.txt
-│   ├── lr1_items.txt
-│   ├── lr1_parsing_table.txt
-│   ├── lr1_trace.txt
-│   ├── comparison.txt
-│   └── parse_trees.txt
-│
-├── Makefile
-└── README.md
-```
-
----
-
-## ⚙️ Compilation
-
-**Using Makefile (recommended):**
+## Build Instructions
+### Using Makefile
 ```bash
 make
 ```
 
-**Manually:**
+### Manual Compilation
 ```bash
-g++ -std=c++17 src/*.cpp -o parser.exe
+g++ -std=c++17 -Wall -Wextra -pedantic src/*.cpp -o parser
 ```
 
-**Clean build artifacts:**
+## Execution Instructions
+### Generate all deliverables for a grammar and an input file
 ```bash
-make clean
+./parser all input/grammar2.txt input/grammar2_valid.txt output/run_expr
 ```
 
----
-
-## ▶️ Usage
-
-**Run the SLR(1) Parser:**
+### Run SLR(1) only
 ```bash
-./parser.exe slr input/grammar1.txt input/input_valid.txt
+./parser slr input/grammar2.txt input/grammar2_valid.txt output/slr_only
 ```
 
-**Run the LR(1) Parser:**
+### Run LR(1) only
 ```bash
-./parser.exe lr1 input/grammar1.txt input/input_valid.txt
+./parser lr1 input/grammar2.txt input/grammar2_valid.txt output/lr1_only
 ```
 
-**Test with a conflicting grammar:**
+### Generate only comparison-oriented outputs
 ```bash
-./parser.exe slr input/grammar_with_conflict.txt input/input_valid.txt
+./parser compare input/grammar3.txt input/grammar3_valid.txt output/conflict_demo
 ```
 
----
+## Output Files Produced
+The program writes these files into the selected output directory:
+- augmented_grammar.txt
+- slr_items.txt
+- slr_parsing_table.txt
+- slr_trace.txt
+- lr1_items.txt
+- lr1_parsing_table.txt
+- lr1_trace.txt
+- comparison.txt
+- parse_trees.txt
 
-## 📊 Output Files
+## Grammar File Format
+- One production per line
+- Format: `NonTerminal -> production1 | production2 | ...`
+- Use spaces between grammar symbols
+- Non-terminals should be uppercase-leading names like `Expr`, `Term`, `Factor`, `Stmt`
+- Epsilon can be written as `epsilon` or `@`
 
-All outputs are written to the `output/` directory:
+Example:
+```text
+Expr -> Expr + Term | Term
+Term -> Term * Factor | Factor
+Factor -> ( Expr ) | id
+```
 
-| File | Contents |
-|---|---|
-| `slr_items.txt` | LR(0) canonical item sets |
-| `slr_parsing_table.txt` | SLR(1) ACTION/GOTO table |
-| `slr_trace.txt` | Step-by-step SLR parsing trace |
-| `lr1_items.txt` | LR(1) canonical item sets |
-| `lr1_parsing_table.txt` | LR(1) ACTION/GOTO table |
-| `lr1_trace.txt` | Step-by-step LR(1) parsing trace |
-| `parse_trees.txt` | Generated parse trees |
-| `comparison.txt` | Performance & feature comparison |
+## Input String File Format
+- One input string per line
+- Tokens must be space-separated
+- Empty line is treated as empty input
 
----
+Example:
+```text
+id + id * id
+( id + id ) * id
+```
 
-## ⚠️ Conflict Demonstration
+## Included Sample Files
+### Grammars
+- input/grammar1.txt
+- input/grammar2.txt
+- input/grammar3.txt
+- input/grammar_with_conflict.txt
 
-The included `grammar_with_conflict.txt` demonstrates a classic ambiguous grammar:
+### Input Sets
+- input/input_valid.txt
+- input/input_invalid.txt
+- input/grammar1_valid.txt
+- input/grammar1_invalid.txt
+- input/grammar2_valid.txt
+- input/grammar2_invalid.txt
+- input/grammar3_valid.txt
+- input/grammar3_invalid.txt
+- input/grammar4_valid.txt
+- input/grammar4_invalid.txt
 
-- **SLR(1)** → produces a **shift/reduce conflict** ❌
-- **LR(1)** → resolves the conflict using lookaheads ✅
-
-This highlights why LR(1) is strictly more powerful than SLR(1).
-
----
-
-## 📈 SLR(1) vs LR(1) — Comparison
-
-| Feature | SLR(1) | LR(1) |
-|---|---|---|
-| Number of States | Fewer | More |
-| Table Size | Smaller | Larger |
-| Construction Time | Faster | Slower |
-| Conflict Handling | Limited (uses FOLLOW) | Strong (uses lookaheads) |
-| Grammars Accepted | Subset of LR(1) | All deterministic CFGs |
-
----
-
-## 📌 Notes
-
-- Supports **epsilon** productions (use `epsilon` or `@`)
-- Supports **multi-character** non-terminals
-- Fully modular — each component is independently reusable
-- Designed for educational and demonstration purposes
-
----
-
-## 👥 Authors
-
-| Name | Roll Number |
-|---|---|
-| Shehryar Faisal | 23I-0604 |
-| Zaki Nabeel | 23I-0508 |
-
----
-
-## 🔮 Future Improvements
-
-- [ ] LALR(1) parser implementation
-- [ ] Graphical parse tree visualization
-- [ ] GUI-based interface
-- [ ] Support for more grammar formats
-
----
-
-> *Built as part of the Compiler Construction course — demonstrating the practical trade-offs between parsing power and computational complexity.*
+## Known Limitations
+- Grammar symbols are expected to be space-separated in the grammar file.
+- The parser generator supports the assignment format directly and is intended for educational CFGs.
+- Parse trees are text-based, as permitted in the assignment PDF.
+- `docs/report.pdf` is intentionally not included in this package because it was excluded from the requested deliverables.

@@ -1,0 +1,216 @@
+SLR(1) Parse Trees
+========================================
+
+Input #1: id
+Reductions:
+  - Factor -> id
+  - Term -> Factor
+  - Expr -> Term
+Parse Tree:
+Expr
+└── Term
+    └── Factor
+        └── id
+
+Input #2: id + id
+Reductions:
+  - Factor -> id
+  - Term -> Factor
+  - Expr -> Term
+  - Factor -> id
+  - Term -> Factor
+  - Expr -> Expr + Term
+Parse Tree:
+Expr
+├── Expr
+│   └── Term
+│       └── Factor
+│           └── id
+├── +
+└── Term
+    └── Factor
+        └── id
+
+Input #3: id * id
+Reductions:
+  - Factor -> id
+  - Term -> Factor
+  - Factor -> id
+  - Term -> Term * Factor
+  - Expr -> Term
+Parse Tree:
+Expr
+└── Term
+    ├── Term
+    │   └── Factor
+    │       └── id
+    ├── *
+    └── Factor
+        └── id
+
+Input #4: id + id * id
+Reductions:
+  - Factor -> id
+  - Term -> Factor
+  - Expr -> Term
+  - Factor -> id
+  - Term -> Factor
+  - Factor -> id
+  - Term -> Term * Factor
+  - Expr -> Expr + Term
+Parse Tree:
+Expr
+├── Expr
+│   └── Term
+│       └── Factor
+│           └── id
+├── +
+└── Term
+    ├── Term
+    │   └── Factor
+    │       └── id
+    ├── *
+    └── Factor
+        └── id
+
+Input #5: ( id + id ) * id
+Reductions:
+  - Factor -> id
+  - Term -> Factor
+  - Expr -> Term
+  - Factor -> id
+  - Term -> Factor
+  - Expr -> Expr + Term
+  - Factor -> ( Expr )
+  - Term -> Factor
+  - Factor -> id
+  - Term -> Term * Factor
+  - Expr -> Term
+Parse Tree:
+Expr
+└── Term
+    ├── Term
+    │   └── Factor
+    │       ├── (
+    │       ├── Expr
+    │       │   ├── Expr
+    │       │   │   └── Term
+    │       │   │       └── Factor
+    │       │   │           └── id
+    │       │   ├── +
+    │       │   └── Term
+    │       │       └── Factor
+    │       │           └── id
+    │       └── )
+    ├── *
+    └── Factor
+        └── id
+
+LR(1) Parse Trees
+========================================
+
+Input #1: id
+Reductions:
+  - Factor -> id
+  - Term -> Factor
+  - Expr -> Term
+Parse Tree:
+Expr
+└── Term
+    └── Factor
+        └── id
+
+Input #2: id + id
+Reductions:
+  - Factor -> id
+  - Term -> Factor
+  - Expr -> Term
+  - Factor -> id
+  - Term -> Factor
+  - Expr -> Expr + Term
+Parse Tree:
+Expr
+├── Expr
+│   └── Term
+│       └── Factor
+│           └── id
+├── +
+└── Term
+    └── Factor
+        └── id
+
+Input #3: id * id
+Reductions:
+  - Factor -> id
+  - Term -> Factor
+  - Factor -> id
+  - Term -> Term * Factor
+  - Expr -> Term
+Parse Tree:
+Expr
+└── Term
+    ├── Term
+    │   └── Factor
+    │       └── id
+    ├── *
+    └── Factor
+        └── id
+
+Input #4: id + id * id
+Reductions:
+  - Factor -> id
+  - Term -> Factor
+  - Expr -> Term
+  - Factor -> id
+  - Term -> Factor
+  - Factor -> id
+  - Term -> Term * Factor
+  - Expr -> Expr + Term
+Parse Tree:
+Expr
+├── Expr
+│   └── Term
+│       └── Factor
+│           └── id
+├── +
+└── Term
+    ├── Term
+    │   └── Factor
+    │       └── id
+    ├── *
+    └── Factor
+        └── id
+
+Input #5: ( id + id ) * id
+Reductions:
+  - Factor -> id
+  - Term -> Factor
+  - Expr -> Term
+  - Factor -> id
+  - Term -> Factor
+  - Expr -> Expr + Term
+  - Factor -> ( Expr )
+  - Term -> Factor
+  - Factor -> id
+  - Term -> Term * Factor
+  - Expr -> Term
+Parse Tree:
+Expr
+└── Term
+    ├── Term
+    │   └── Factor
+    │       ├── (
+    │       ├── Expr
+    │       │   ├── Expr
+    │       │   │   └── Term
+    │       │   │       └── Factor
+    │       │   │           └── id
+    │       │   ├── +
+    │       │   └── Term
+    │       │       └── Factor
+    │       │           └── id
+    │       └── )
+    ├── *
+    └── Factor
+        └── id
+

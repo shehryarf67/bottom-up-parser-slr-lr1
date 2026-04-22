@@ -1,0 +1,26 @@
+State   (             )             *             +             id            $             Expr          Term          Factor        
+I0      s1                                                      s2                          3             4             5             
+I1      s6                                                      s7                          8             9             10            
+I2                                  r6            r6                          r6                                                      
+I3                                                s11                         acc                                                     
+I4                                  s12           r2                          r2                                                      
+I5                                  r4            r4                          r4                                                      
+I6      s6                                                      s7                          13            9             10            
+I7                    r6            r6            r6                                                                                  
+I8                    s14                         s15                                                                                 
+I9                    r2            s16           r2                                                                                  
+I10                   r4            r4            r4                                                                                  
+I11     s1                                                      s2                                        17            5             
+I12     s1                                                      s2                                                      18            
+I13                   s19                         s15                                                                                 
+I14                                 r5            r5                          r5                                                      
+I15     s6                                                      s7                                        20            10            
+I16     s6                                                      s7                                                      21            
+I17                                 s12           r1                          r1                                                      
+I18                                 r3            r3                          r3                                                      
+I19                   r5            r5            r5                                                                                  
+I20                   r1            s16           r1                                                                                  
+I21                   r3            r3            r3                                                                                  
+
+No conflicts detected.
+Grammar classification: LR(1)

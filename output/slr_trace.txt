@@ -1,0 +1,95 @@
+SLR(1) Parsing Trace Report
+========================================
+
+Input #1: id
+Result: Accepted
+Message: String accepted successfully.
+Parse Time (ms): 0.2445
+Trace:
+Step	Stack	Input	Action
+1	0 id 2	$	shift 2
+2	0 Factor 5	$	reduce Factor -> id
+3	0 Term 4	$	reduce Term -> Factor
+4	0 Expr 3	$	reduce Expr -> Term
+5	0 Expr 3	$	accept
+
+Input #2: id + id
+Result: Accepted
+Message: String accepted successfully.
+Parse Time (ms): 0.1999
+Trace:
+Step	Stack	Input	Action
+1	0 id 2	+ id $	shift 2
+2	0 Factor 5	+ id $	reduce Factor -> id
+3	0 Term 4	+ id $	reduce Term -> Factor
+4	0 Expr 3	+ id $	reduce Expr -> Term
+5	0 Expr 3 + 7	id $	shift 7
+6	0 Expr 3 + 7 id 2	$	shift 2
+7	0 Expr 3 + 7 Factor 5	$	reduce Factor -> id
+8	0 Expr 3 + 7 Term 10	$	reduce Term -> Factor
+9	0 Expr 3	$	reduce Expr -> Expr + Term
+10	0 Expr 3	$	accept
+
+Input #3: id * id
+Result: Accepted
+Message: String accepted successfully.
+Parse Time (ms): 0.1691
+Trace:
+Step	Stack	Input	Action
+1	0 id 2	* id $	shift 2
+2	0 Factor 5	* id $	reduce Factor -> id
+3	0 Term 4	* id $	reduce Term -> Factor
+4	0 Term 4 * 8	id $	shift 8
+5	0 Term 4 * 8 id 2	$	shift 2
+6	0 Term 4 * 8 Factor 11	$	reduce Factor -> id
+7	0 Term 4	$	reduce Term -> Term * Factor
+8	0 Expr 3	$	reduce Expr -> Term
+9	0 Expr 3	$	accept
+
+Input #4: id + id * id
+Result: Accepted
+Message: String accepted successfully.
+Parse Time (ms): 0.6411
+Trace:
+Step	Stack	Input	Action
+1	0 id 2	+ id * id $	shift 2
+2	0 Factor 5	+ id * id $	reduce Factor -> id
+3	0 Term 4	+ id * id $	reduce Term -> Factor
+4	0 Expr 3	+ id * id $	reduce Expr -> Term
+5	0 Expr 3 + 7	id * id $	shift 7
+6	0 Expr 3 + 7 id 2	* id $	shift 2
+7	0 Expr 3 + 7 Factor 5	* id $	reduce Factor -> id
+8	0 Expr 3 + 7 Term 10	* id $	reduce Term -> Factor
+9	0 Expr 3 + 7 Term 10 * 8	id $	shift 8
+10	0 Expr 3 + 7 Term 10 * 8 id 2	$	shift 2
+11	0 Expr 3 + 7 Term 10 * 8 Factor 11	$	reduce Factor -> id
+12	0 Expr 3 + 7 Term 10	$	reduce Term -> Term * Factor
+13	0 Expr 3	$	reduce Expr -> Expr + Term
+14	0 Expr 3	$	accept
+
+Input #5: ( id + id ) * id
+Result: Accepted
+Message: String accepted successfully.
+Parse Time (ms): 0.7958
+Trace:
+Step	Stack	Input	Action
+1	0 ( 1	id + id ) * id $	shift 1
+2	0 ( 1 id 2	+ id ) * id $	shift 2
+3	0 ( 1 Factor 5	+ id ) * id $	reduce Factor -> id
+4	0 ( 1 Term 4	+ id ) * id $	reduce Term -> Factor
+5	0 ( 1 Expr 6	+ id ) * id $	reduce Expr -> Term
+6	0 ( 1 Expr 6 + 7	id ) * id $	shift 7
+7	0 ( 1 Expr 6 + 7 id 2	) * id $	shift 2
+8	0 ( 1 Expr 6 + 7 Factor 5	) * id $	reduce Factor -> id
+9	0 ( 1 Expr 6 + 7 Term 10	) * id $	reduce Term -> Factor
+10	0 ( 1 Expr 6	) * id $	reduce Expr -> Expr + Term
+11	0 ( 1 Expr 6 ) 9	* id $	shift 9
+12	0 Factor 5	* id $	reduce Factor -> ( Expr )
+13	0 Term 4	* id $	reduce Term -> Factor
+14	0 Term 4 * 8	id $	shift 8
+15	0 Term 4 * 8 id 2	$	shift 2
+16	0 Term 4 * 8 Factor 11	$	reduce Factor -> id
+17	0 Term 4	$	reduce Term -> Term * Factor
+18	0 Expr 3	$	reduce Expr -> Term
+19	0 Expr 3	$	accept
+

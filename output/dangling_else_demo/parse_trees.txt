@@ -1,0 +1,48 @@
+SLR(1) Parse Trees
+========================================
+
+Input #1: other
+Reductions:
+  - Stmt -> other
+Parse Tree:
+Stmt
+└── other
+
+Input #2: if id then other
+Reductions:
+  - Expr -> id
+  - Stmt -> other
+  - Stmt -> if Expr then Stmt
+Parse Tree:
+Stmt
+├── if
+├── Expr
+│   └── id
+├── then
+└── Stmt
+    └── other
+
+LR(1) Parse Trees
+========================================
+
+Input #1: other
+Reductions:
+  - Stmt -> other
+Parse Tree:
+Stmt
+└── other
+
+Input #2: if id then other
+Reductions:
+  - Expr -> id
+  - Stmt -> other
+  - Stmt -> if Expr then Stmt
+Parse Tree:
+Stmt
+├── if
+├── Expr
+│   └── id
+├── then
+└── Stmt
+    └── other
+

@@ -1,0 +1,2 @@
+The assignment PDF requires docs/report.pdf.
+This file is omitted intentionally because the user requested the code package without the report deliverable.

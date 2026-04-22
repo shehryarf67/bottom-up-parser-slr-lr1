@@ -1,0 +1,26 @@
+SLR(1) vs LR(1) Comparison
+========================================
+
+State Count Comparison
+  SLR(1): 10
+  LR(1):  17
+
+Parsing Table Density
+  SLR(1): ACTION cells = 16, GOTO cells = 4, serialized bytes = 1403
+  LR(1):  ACTION cells = 26, GOTO cells = 7, serialized bytes = 2252
+
+Construction Time
+  SLR(1): 1.2277 ms
+  LR(1):  3.2851 ms
+
+Parsing Speed on Provided Inputs
+  SLR(1): 0.7556 ms total
+  LR(1):  0.9382 ms total
+
+Conflict Analysis
+  SLR(1) conflict count: 1
+  SLR(1): State I7, Symbol 'else' -> Shift/Reduce Conflict
+  LR(1) conflict count: 1
+  LR(1): State I14, Symbol 'else' -> Shift/Reduce Conflict
+
+Observation: Review the listed conflicts.

@@ -1,0 +1,15 @@
+State   *             =             id            $             Start         L             R             
+I0      s1                          s2                          3             4             5             
+I1      s1                          s2                                        6             7             
+I2                    r4                          r4                                                      
+I3                                                acc                                                     
+I4                    r5 / s8                     r5                                                      
+I5                                                r2                                                      
+I6                    r5                          r5                                                      
+I7                    r3                          r3                                                      
+I8      s1                          s2                                        6             9             
+I9                                                r1                                                      
+
+Conflicts:
+  State I4, Symbol '=': Shift/Reduce Conflict => r5 / s8
+Grammar classification: Not SLR(1)

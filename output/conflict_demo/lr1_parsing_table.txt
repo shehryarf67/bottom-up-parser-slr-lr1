@@ -1,0 +1,18 @@
+State   *             =             id            $             Start         L             R             
+I0      s1                          s2                          3             4             5             
+I1      s1                          s2                                        6             7             
+I2                    r4                          r4                                                      
+I3                                                acc                                                     
+I4                    s8                          r5                                                      
+I5                                                r2                                                      
+I6                    r5                          r5                                                      
+I7                    r3                          r3                                                      
+I8      s9                          s10                                       11            12            
+I9      s9                          s10                                       11            13            
+I10                                               r4                                                      
+I11                                               r5                                                      
+I12                                               r1                                                      
+I13                                               r3                                                      
+
+No conflicts detected.
+Grammar classification: LR(1)

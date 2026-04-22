@@ -1,0 +1,63 @@
+LR(1) Parsing Trace Report
+========================================
+
+Input #1: id
+Result: Accepted
+Message: String accepted successfully.
+Parse Time (ms): 0.2087
+Trace:
+Step	Stack	Input	Action
+1	0 id 2	$	shift 2
+2	0 L 4	$	reduce L -> id
+3	0 R 5	$	reduce R -> L
+4	0 Start 3	$	reduce Start -> R
+5	0 Start 3	$	accept
+
+Input #2: * id
+Result: Accepted
+Message: String accepted successfully.
+Parse Time (ms): 0.2924
+Trace:
+Step	Stack	Input	Action
+1	0 * 1	id $	shift 1
+2	0 * 1 id 2	$	shift 2
+3	0 * 1 L 6	$	reduce L -> id
+4	0 * 1 R 7	$	reduce R -> L
+5	0 L 4	$	reduce L -> * R
+6	0 R 5	$	reduce R -> L
+7	0 Start 3	$	reduce Start -> R
+8	0 Start 3	$	accept
+
+Input #3: id = id
+Result: Accepted
+Message: String accepted successfully.
+Parse Time (ms): 0.249
+Trace:
+Step	Stack	Input	Action
+1	0 id 2	= id $	shift 2
+2	0 L 4	= id $	reduce L -> id
+3	0 L 4 = 8	id $	shift 8
+4	0 L 4 = 8 id 10	$	shift 10
+5	0 L 4 = 8 L 11	$	reduce L -> id
+6	0 L 4 = 8 R 12	$	reduce R -> L
+7	0 Start 3	$	reduce Start -> L = R
+8	0 Start 3	$	accept
+
+Input #4: * id = id
+Result: Accepted
+Message: String accepted successfully.
+Parse Time (ms): 0.3349
+Trace:
+Step	Stack	Input	Action
+1	0 * 1	id = id $	shift 1
+2	0 * 1 id 2	= id $	shift 2
+3	0 * 1 L 6	= id $	reduce L -> id
+4	0 * 1 R 7	= id $	reduce R -> L
+5	0 L 4	= id $	reduce L -> * R
+6	0 L 4 = 8	id $	shift 8
+7	0 L 4 = 8 id 10	$	shift 10
+8	0 L 4 = 8 L 11	$	reduce L -> id
+9	0 L 4 = 8 R 12	$	reduce R -> L
+10	0 Start 3	$	reduce Start -> L = R
+11	0 Start 3	$	accept
+

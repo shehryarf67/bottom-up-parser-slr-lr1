@@ -1,0 +1,22 @@
+Original Start Symbol: Expr
+Augmented Start Symbol: ExprPrime
+
+(0) ExprPrime -> Expr
+(1) Expr -> Expr + Term
+(2) Expr -> Term
+(3) Term -> Term * Factor
+(4) Term -> Factor
+(5) Factor -> ( Expr )
+(6) Factor -> id
+
+FIRST Sets:
+FIRST(Expr) = { (, id }
+FIRST(ExprPrime) = { (, id }
+FIRST(Factor) = { (, id }
+FIRST(Term) = { (, id }
+
+FOLLOW Sets:
+FOLLOW(Expr) = { $, ), + }
+FOLLOW(ExprPrime) = {  }
+FOLLOW(Factor) = { $, ), *, + }
+FOLLOW(Term) = { $, ), *, + }
